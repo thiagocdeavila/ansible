@@ -1,5 +1,7 @@
 ---
 packages:
+  - xorg
+  - xorg-xinit
   - alacritty
   - i3-gaps
   - polybar
