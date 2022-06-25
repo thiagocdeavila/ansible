@@ -1,0 +1,30 @@
+---
+- name: Install Development packages.
+  block:
+    - name: Install ZSH and Starship.
+      become: true
+      pacman:
+        name: [zsh, starship]
+        state: present
+    - name: Set ZSH as default shell for {{ user_name }}.
+      user:
+        name: "{{ user_name }}"
+        shell: /bin/zsh
+
+    - name: Install Docker.
+      become: true
+      pacman:
+        name: docker
+        state: present
+    - name: Install Docker Rootless script.
+      get_url:
+        url: "https://get.docker.com/rootless"
+        dest: "/tmp/docker-rootless.sh"
+    - name: Run Docker Rootless script.
+      script: "/tmp/docker-rootless.sh"
+
+    - name: Install DBeaver.
+      become: true
+      pacman:
+        name: dbeaver
+        state: present
