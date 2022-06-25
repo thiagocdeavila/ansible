@@ -17,3 +17,8 @@ packages:
   - noto-fonts-emoji
   - xdg-user-dirs
   - rofi
+  - polkit-gnome
+  - gnome-keyring
+  - libsecret
+  - openssh
+  - seahorse
