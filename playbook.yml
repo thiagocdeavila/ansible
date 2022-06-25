@@ -1,2 +1,9 @@
 ---
 - hosts: localhost
+
+  vars_files:
+    - "vars/variables.yml"
+
+  roles:
+    - system
+    - user

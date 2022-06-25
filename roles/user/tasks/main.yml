@@ -1,0 +1,30 @@
+---
+- name: Configure git name.
+  git_config:
+    name: user.name
+    scope: global
+    value: "Thiago Avila"
+- name: Configure git email.
+  git_config:
+    name: user.email
+    scope: global
+    value: "hey@thiagoavila.dev"
+- name: Configure git editor.
+  git_config:
+    name: core.editor
+    scope: global
+    value: nvim
+
+- name: "Ensure {{home_dir}}/.ssh directory exists."
+  file:
+    dest: "{{home_dir}}/.ssh"
+    mode: 0700
+    state: directory
+- name: Install ssh key.
+  copy:
+    src: .ssh/id_ed25519
+    dest: "{{home_dir}}/.ssh/"
+- name: Install ssh key public.
+  copy:
+    src: .ssh/id_ed25519.pub
+    dest: "{{home_dir}}/.ssh/"

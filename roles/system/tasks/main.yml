@@ -1,0 +1,10 @@
+---
+- name: Update the repositories.
+  become: true
+  pacman: update_cache=yes
+
+- name: Install system packages.
+  become: true
+  pacman:
+    name: "{{ packages }}"
+    state: present

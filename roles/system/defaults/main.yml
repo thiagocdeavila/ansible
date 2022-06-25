@@ -1,0 +1,7 @@
+---
+packages:
+  - alacritty
+  - i3-gaps
+  - polybar
+  - git
+  - neovim
