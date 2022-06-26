@@ -6,10 +6,17 @@
       pacman:
         name: [zsh, starship]
         state: present
-    # - name: Set ZSH as default shell for {{ user_name }}.
-    #   user:
-    #     name: "{{ user_name }}"
-    #     shell: /bin/zsh
+    - name: Set ZSH as default shell for {{ user_name }}.
+      user:
+        name: "{{ user_name }}"
+        shell: /bin/zsh
+    - name: Install ASDF version manager.
+      become: false
+      git:
+        repo: "https://github.com/asdf-vm/asdf.git"
+        clone: yes
+        dest: "{{ home_dir }}/.asdf"
+        version: "v0.10.0"
 
     - name: Install Docker.
       pacman:
