@@ -1,30 +1,40 @@
 ---
 - name: Install Development packages.
+  become: true
   block:
     - name: Install ZSH and Starship.
-      become: true
       pacman:
         name: [zsh, starship]
         state: present
-    - name: Set ZSH as default shell for {{ user_name }}.
-      user:
-        name: "{{ user_name }}"
-        shell: /bin/zsh
+    # - name: Set ZSH as default shell for {{ user_name }}.
+    #   user:
+    #     name: "{{ user_name }}"
+    #     shell: /bin/zsh
 
     - name: Install Docker.
-      become: true
       pacman:
-        name: docker
+        name: [docker, fuse-overlayfs]
         state: present
+    - name: Add user on /etc/subuid
+      lineinfile:
+        dest: "/etc/subuid"
+        line: "{{ user_name }}:165536:65536"
+        create: yes
+    - name: Add user on /etc/subgid
+      lineinfile:
+        dest: "/etc/subgid"
+        line: "{{ user_name }}:165536:65536"
+        create: yes
     - name: Install Docker Rootless script.
       get_url:
         url: "https://get.docker.com/rootless"
         dest: "/tmp/docker-rootless.sh"
     - name: Run Docker Rootless script.
+      become: false
+      become_user: "{{ user_name }}"
       script: "/tmp/docker-rootless.sh"
 
     - name: Install DBeaver.
-      become: true
       pacman:
         name: dbeaver
         state: present

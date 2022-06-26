@@ -10,5 +10,6 @@
     state: present
 
 - name: Update xdg-user-dirs.
-  command: xdg-user-dirs-update
-  creates: "{{home_dir}}/Pictures"
+  command:
+    cmd: xdg-user-dirs-update
+    creates: "{{home_dir}}/Pictures"

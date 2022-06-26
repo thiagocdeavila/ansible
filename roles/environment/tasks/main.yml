@@ -1,13 +1,20 @@
 ---
-- name: Install web browser.
-  pacman:
-    name: vivaldi
-    state: present
-- name: Install email client.
-  pacman:
-    name: thunderbird
-    state: present
-- name: Install GIMP.
-  pacman:
-    name: gimp
-    state: present
+- name: Install environment packages.
+  become: true
+  block:
+    - name: Install web browser.
+      pacman:
+        name: vivaldi
+        state: present
+    - name: Install email client.
+      pacman:
+        name: thunderbird
+        state: present
+    - name: Install GIMP.
+      pacman:
+        name: gimp
+        state: present
+    - name: Install Discord.
+      pacman:
+        name: discord
+        state: present
