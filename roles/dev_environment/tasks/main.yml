@@ -10,6 +10,16 @@
       user:
         name: "{{ user_name }}"
         shell: /bin/zsh
+    - name: Install Oh My ZSH script.
+      get_url:
+        url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+        dest: "/tmp/oh_my_zsh.sh"
+    - name: Run Oh My ZSH script.
+      become: false
+      become_user: "{{ user_name }}"
+      script:
+        cmd: "/tmp/oh_my_zsh.sh"
+        creates: "{{ home_dir }}/.oh-my-zsh/"
     - name: Install ASDF version manager.
       become: false
       git:
