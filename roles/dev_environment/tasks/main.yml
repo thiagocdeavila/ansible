@@ -1,0 +1,3 @@
+---
+- name: Configure Git and SSH
+  import_tasks: git.yml

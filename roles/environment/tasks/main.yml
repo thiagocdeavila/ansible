@@ -1,0 +1,5 @@
+---
+- name: Update the brew repositories and install system packages
+  ansible.builtin.homebrew_cask:
+    name: "{{ packages.casks }}" 
+    update_homebrew: true
