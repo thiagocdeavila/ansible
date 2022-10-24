@@ -1,12 +1,11 @@
 ---
-
 - name: Update the brew repositories and install development programs.
   block:
-    - ansible.builtin.homebrew:
+    - community.general.homebrew:
         name: "{{ programs.formulae }}"
         update_homebrew: true
-    - ansible.builtin.homebrew_cask:
-        name: "{{ programs.casks }}"	  
-- name: Install development packages. 
-  ansible.builtin.homebrew:
+    - community.general.homebrew_cask:
+        name: "{{ programs.casks }}"
+- name: Install development packages.
+  community.general.homebrew:
     name: "{{ packages.formulae }}"

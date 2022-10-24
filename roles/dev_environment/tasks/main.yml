@@ -1,3 +1,5 @@
 ---
 - name: Configure Git and SSH
   import_tasks: git.yml
+- name: Install development programs and packages.
+  import_tasks: programs.yml

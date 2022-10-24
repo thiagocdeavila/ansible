@@ -6,7 +6,7 @@
     dest: "{{home_dir}}/.dotfiles"
     version: "macos"
 - name: Run Stow.
-  command: "stow -D {{ item }}"
+  command: "stow --dir={{ home_dir }}/.dotfiles {{ item }}"
   loop:
     - "neovim"
     - "tmux"
