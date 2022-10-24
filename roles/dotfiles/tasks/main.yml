@@ -1,0 +1,14 @@
+---
+- name: Clone dotfiles repository.
+  git:
+    repo: "https://github.com/thiagocdeavila/.dotfiles"
+    clone: yes
+    dest: "{{home_dir}}/.dotfiles"
+    version: "macos"
+- name: Run Stow.
+  command: "stow -D {{ item }}"
+  loop:
+    - "neovim"
+    - "tmux"
+- name: Install Neovim plugins.
+  command: "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"

@@ -1,5 +1,8 @@
 ---
-- name: Update the brew repositories and install system packages
-  ansible.builtin.homebrew_cask:
-    name: "{{ packages.casks }}" 
-    update_homebrew: true
+- name: Update the brew repositories and install system programs
+  block:
+    - ansible.builtin.homebrew:
+      name: "{{programs.formulae}}"
+      update_homebrew: true
+    - ansible.builtin.homebrew_cask:
+      name: "{{ programs.casks }}"

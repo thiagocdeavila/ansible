@@ -1,0 +1,27 @@
+programs:
+  casks:
+    - iterm2
+    - hammerspoon
+  formulae:
+    - neovim
+    - asdf
+    - docker
+    - colima
+    - lazygit
+    - zoxide
+    - starship
+    - tmux
+    - tmuxinator
+    - tmuxinator-completion
+    - openvpn
+packages:
+  formulae:
+    - htop
+    - bat
+    - libpq
+    - yarn
+    - pnpm
+    - sass
+    - php
+    - composer
+    - stow

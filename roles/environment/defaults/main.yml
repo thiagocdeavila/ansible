@@ -9,3 +9,6 @@ packages:
     - font-jetbrains-mono-nerd-font
     - transmission
     - vivaldi
+    - firefox
+  formulae:
+    - youtube-dl

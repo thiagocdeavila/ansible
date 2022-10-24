@@ -1,5 +1,4 @@
 ---
-
 - hosts: localhost
   gather_facts: false
 
@@ -7,5 +6,9 @@
     - "vars/variables.yml"
 
   roles:
-    - environment
-    - dev_environment
+    - role: environment
+      tags: [environment]
+    - role: dev_environment
+      tags: [dev]
+    - role: dotfiles
+      tags: [dotfiles]
