@@ -1,8 +1,12 @@
 ---
 - name: Update the brew repositories and install system programs
   block:
-    - community.general.homebrew:
-        name: "{{programs.formulae}}"
+    - name: "Install formulae programs"
+      community.general.homebrew:
+        name: "{{ programs.formulae }}"
         update_homebrew: true
-    - community.general.homebrew_cask:
+    - name: "Install casks programs"
+      community.general.homebrew_cask:
         name: "{{ programs.casks }}"
+    - name: "Run OSX configuration"
+      ansible.builtin.import_tasks: osx_user.yml

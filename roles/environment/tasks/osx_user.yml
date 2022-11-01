@@ -1,0 +1,41 @@
+---
+- name: Disable mouse scaling.
+  community.general.osx_defaults:
+    domain: com.apple.mouse.scaling
+    type: integer
+    value: -1
+
+- name: Configure Dock
+  block:
+    - name: Change minimize/maximize window effect.
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: mineffect
+        value: scale
+    - name: Minimize windows into their application's  icon.
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: minimize-to-application
+        type: bool
+        value: true
+    - name: Set icon size of Dock to 16 pixels
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: tilesize
+        type: integer
+        value: 16
+    - name: Set autohide Dock.
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: autohide
+        type: boolean
+        value: true
+    - name: Wipe all default app icons from the Dock.
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: persistent-apps
+        type: array
+        value: []
+    - name: Kill Dock
+      ansible.builtin.command: killall Dock &> /dev/null
+      changed_when: false
